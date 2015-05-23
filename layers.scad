@@ -26,8 +26,8 @@ difference() {
               }
             }
           }
-          translate([0,12,4.5]) {
-            rotate([-180,0,180]) {
+          translate([0,13,2]) {
+            rotate([0,0,0]) {
               micro_usb_board();
             }
           }
@@ -45,6 +45,6 @@ difference() {
   }
   translate([-5,-12.5,2]) {
       // channel
-      cube([10,19.5,2]);
+      cube([10,29.5,2]);
     }
 }
