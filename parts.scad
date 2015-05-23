@@ -83,9 +83,9 @@ module power_sw() {
 
   switch_height = 5;
   switch_width = 7;
-  switch_length = 2.5;
+  switch_length = 3;
   switch_x_offset = -3.5;
-  switch_y_offset = -1;
+  switch_y_offset = -1.5;
 
   union() {
     // base
@@ -106,7 +106,8 @@ module micro_usb_board() {
   connector_width = 9;
   connector_length = 11.5;
   connector_x_offset = -4.5;
-  connector_y_offset = 1;
+  connector_y_offset = 0.5;
+  connector_z_offset = 1.50;
 
   mount_hole_diameter = 3.5;
   mount_hole_x_offset = 7.5;
@@ -117,7 +118,7 @@ module micro_usb_board() {
     translate([-(board_width/2), -(board_length/2), 0])
       cube([board_width, board_length, board_height]);
     // button
-    translate([connector_x_offset,connector_y_offset,board_height])
+    translate([connector_x_offset,connector_y_offset,connector_z_offset])
       cube([connector_width, connector_length, connector_height]);
   }
 }

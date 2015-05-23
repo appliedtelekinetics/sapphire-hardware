@@ -20,13 +20,13 @@ difference() {
         difference() {
           difference() {
             hemisphere();
-            translate([0,-11,3]) {
+            translate([0,-12,3]) {
               rotate([90,0,0]) {
                 power_sw();
               }
             }
           }
-          translate([0,9,4.5]) {
+          translate([0,12,4.5]) {
             rotate([-180,0,180]) {
               micro_usb_board();
             }
@@ -38,11 +38,13 @@ difference() {
       }
       mount_holes();
     }
-    translate([-5,-2.9,0]) {
-      cube([10,6,5]);
+    translate([-5,-4.9,0]) {
+      // access
+      cube([10,10,5]);
     }
   }
-  translate([-5,-12,2]) {
-      cube([10,15,2]);
+  translate([-5,-12.5,2]) {
+      // channel
+      cube([10,19.5,2]);
     }
 }
