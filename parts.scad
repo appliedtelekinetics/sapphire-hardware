@@ -78,7 +78,7 @@ module slim_button() {
 
 module power_sw() {
   base_width = 12;
-  base_length = 4.5;
+  base_length = 5;
   base_height = 6; // including nubs
 
   switch_height = 5;

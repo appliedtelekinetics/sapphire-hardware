@@ -16,7 +16,7 @@ facets = 50;
 // difference() {
 //   difference() {
 //     difference() {
-      
+
 //       difference() {
 //         difference() {
 //           difference() {
@@ -56,7 +56,9 @@ facets = 50;
 //     }
 // }
 
-difference() {
+
+
+module control_pod() {
   difference() {
     difference() {
       difference() {
@@ -75,19 +77,52 @@ difference() {
             }
           }
         }
-        translate([-25,-25,4]) {
-          cube([50, 50, 20]);
-        }
+        mount_holes();
       }
-      mount_holes();
+      translate([-5,-4.9,0]) {
+        // access
+        cube([10,10,4]);
+      }
     }
-    translate([-5,-4.9,0]) {
-      // access
-      cube([10,10,4]);
+    translate([-5,-12.5,2]) {
+        // channel
+        cube([10,29.5,2]);
+      }
+  }
+}
+
+module base_layer() {
+  difference() {
+    control_pod();
+    translate([-25,-25,4]) {
+      cube([50, 50, 20]);
     }
   }
-  translate([-5,-12.5,2]) {
-      // channel
-      cube([10,29.5,2]);
-    }
 }
+
+module second_layer() {
+  difference() {
+    difference() {
+      control_pod();
+      translate([-25,-25,6.5]) {
+        cube([50, 50, 20]);
+      }
+    }
+    translate([-25,-25,-6]) {
+      cube([50, 50, 10]);
+    }
+  }
+}
+
+module top_layer() {
+  intersection() {
+    control_pod();
+    translate([-25,-25,6.5]) {
+      cube([50, 50, 20]);
+    }
+  }
+}
+
+// base_layer();
+// second_layer();
+top_layer();
