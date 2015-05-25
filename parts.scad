@@ -1,3 +1,6 @@
+mount_hole_center_offset = 9.4;
+mount_hole_radius = 1.75;
+
 module hemisphere() {
   translate([0,0,-6]) {
     difference() {
@@ -11,12 +14,24 @@ module hemisphere() {
 
 module mount_holes() {
   union() {
-    translate([-9.4, 0, 0]) {
-      cylinder(r=1.5, h=20, $fn=facets);
+    translate([-mount_hole_center_offset, 0, 0]) {
+      cylinder(r=mount_hole_radius, h=20, $fn=facets);
     }
 
-    translate([+9.4, 0, 0]) {
-      cylinder(r=1.5, h=20, $fn=facets);
+    translate([+mount_hole_center_offset, 0, 0]) {
+      cylinder(r=mount_hole_radius, h=20, $fn=facets);
+    }
+  }
+}
+
+module screw_countersinks() {
+  union() {
+    translate([-mount_hole_center_offset, 0, 13]) {
+      cylinder(r=mount_hole_radius+1, h=2, $fn=facets);
+    }
+
+    translate([+mount_hole_center_offset, 0, 13]) {
+      cylinder(r=mount_hole_radius+1, h=2, $fn=facets);
     }
   }
 }
@@ -24,7 +39,8 @@ module mount_holes() {
 module navigation_switch() {
   base_width=11.0;
   base_length=11.0;
-  base_height=3.65;
+  // base_height=3.65;
+  base_height=4.5; // with leads folded under
   stick_lower_height=3.4; // 4.4 really
   stick_upper_width=3.17;
   stick_upper_length=3.16;
