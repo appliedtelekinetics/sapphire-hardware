@@ -66,16 +66,24 @@ module control_pod() {
           difference() {
             difference() {
               difference() {
-                hemisphere();
-                translate([0,-12.5,3]) {
-                  rotate([90,0,0]) {
-                    power_sw();
+                difference() {
+                  hemisphere();
+                  translate([8,-9,3]) {
+                    rotate([-90,0,-140]) {
+                      color("blue") { power_sw(); }
+                    }
+                  }
+                }
+                translate([5,-12,2]) {
+                  rotate([0,0,40]) {
+                    // extra channel for power_sw
+                    color("green") { cube([9,11,1]); }
                   }
                 }
               }
               translate([0,12,1]) {
                 rotate([0,0,0]) {
-                  micro_usb_board();
+                  color("red") { micro_usb_board(); }
                 }
               }
             }
@@ -93,9 +101,9 @@ module control_pod() {
           cube([10,10,12.5]);
         }
       }
-      translate([-5,-13.5,2]) {
-        // channel
-        cube([10,29.5,1]);
+      translate([-5,-12,2]) {
+        // channel on base layer
+        cube([10,25,1]);
       }
     }
     screw_countersinks();
@@ -147,6 +155,7 @@ module top_layer() {
     }
   }
 }
+
 
 base_layer();
 // second_layer();
