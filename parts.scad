@@ -41,7 +41,8 @@ module navigation_switch() {
   base_length=11.0;
   // base_height=3.65;
   base_height=4.5; // with leads folded under
-  stick_lower_height=3.4; // 4.4 really
+  // stick_lower_height=3.4; // 4.4 really
+  stick_lower_height=6; // stick movement space
   stick_upper_width=3.17;
   stick_upper_length=3.16;
 
@@ -62,7 +63,8 @@ module button() {
   base_width = 8.0; // including leads
   base_length = 7.1;
   base_height = 4; // including nubs
-  button_height = 2;
+  // button_height = 2;
+  button_height = 5; // ensure cleanance
   button_width = 4;
 
   union() {

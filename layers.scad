@@ -2,62 +2,6 @@ include <parts.scad>;
 
 facets = 50;
 
-// navigation_switch();
-// button();
-// slim_button();
-// power_sw();
-// micro_usb_board();
-
-// difference() {
-//   hemisphere();
-//   mount_holes();
-// }
-
-// difference() {
-//   difference() {
-//     difference() {
-
-//       difference() {
-//         difference() {
-//           difference() {
-//             difference() {
-//               hemisphere();
-//               translate([0,-12,4]) {
-//                 rotate([90,0,0]) {
-//                   power_sw();
-//                 }
-//               }
-//             }
-//             translate([0,13,2]) {
-//               rotate([0,0,0]) {
-//                 micro_usb_board();
-//               }
-//             }
-//           }
-//           translate([-25,-25,-8]) {
-//             cube([50, 50, 12]);
-//           }
-//         }
-//         translate([-25,-25,6]) {
-//           cube([50, 50, 12]);
-//         }
-//       }
-
-//       mount_holes();
-//     }
-//     translate([-5,-4.9,0]) {
-//       // access
-//       cube([10,10,4]);
-//     }
-//   }
-//   translate([-5,-12.5,2]) {
-//       // channel
-//       cube([10,29.5,2]);
-//     }
-// }
-
-
-
 module control_pod() {
   difference() {
     difference() {
@@ -67,31 +11,39 @@ module control_pod() {
             difference() {
               difference() {
                 difference() {
-                  hemisphere();
-                  translate([8,-9,3]) {
-                    rotate([-90,0,-140]) {
-                      color("blue") { power_sw(); }
+                  difference() {
+                    hemisphere();
+                    translate([8,-9,3]) {
+                      rotate([-90,0,-140]) {
+                        color("blue") { power_sw(); }
+                      }
+                    }
+                  }
+                  translate([5,-11.5,2]) {
+                    rotate([0,0,40]) {
+                      // extra channel for power_sw
+                      color("green") { cube([8,11,1]); }
                     }
                   }
                 }
-                translate([5,-12,2]) {
-                  rotate([0,0,40]) {
-                    // extra channel for power_sw
-                    color("green") { cube([9,11,1]); }
+                translate([0,12,1]) {
+                  rotate([0,0,0]) {
+                    color("red") { micro_usb_board(); }
                   }
                 }
               }
-              translate([0,12,1]) {
-                rotate([0,0,0]) {
-                  color("red") { micro_usb_board(); }
-                }
+              mount_holes();
+            }
+            translate([-6.0,-8.0,4.5]) {
+              rotate([60,0,-35]) {
+                color("orange") { navigation_switch(); }
               }
             }
-            mount_holes();
-          }
-          translate([0,-7.5,8]) {
-            rotate([35,0,0]) {
-              navigation_switch();
+            translate([12,0,4]) {
+              rotate([0,90,0]) {
+                // reset button
+                color("orange") { button(); }
+              }
             }
           }
         }
@@ -157,7 +109,24 @@ module top_layer() {
 }
 
 
-base_layer();
-// second_layer();
-// third_layer();
-// top_layer();
+explode = true;
+// // explode = falses;
+
+if (explode) {
+  explosion = 5;
+  base_layer();
+  translate([0,0,explosion]) { second_layer() ; }
+  translate([0,0,explosion*2]) { third_layer() ; }
+  translate([0,0,explosion*3]) { top_layer() ; }
+} else {
+  base_layer();
+  second_layer();
+  third_layer();
+  top_layer();
+}
+
+// for single stl export
+// translate([0,35,0]) { base_layer(); }
+// translate([35,0,-3.0]) { second_layer() ; }
+// translate([0,-30,-5.5]) { third_layer() ; }
+// translate([-25,0,-12.5]) { top_layer() ; }
