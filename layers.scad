@@ -65,13 +65,13 @@ module control_pod() {
         difference() {
           difference() {
             hemisphere();
-            translate([0,-12,4]) {
+            translate([0,-12.5,3]) {
               rotate([90,0,0]) {
                 power_sw();
               }
             }
           }
-          translate([0,13,2]) {
+          translate([0,12,1]) {
             rotate([0,0,0]) {
               micro_usb_board();
             }
@@ -81,12 +81,12 @@ module control_pod() {
       }
       translate([-5,-4.9,0]) {
         // access
-        cube([10,10,4]);
+        cube([10,10,5.5]);
       }
     }
-    translate([-5,-12.5,2]) {
+    translate([-5,-13.5,2]) {
         // channel
-        cube([10,29.5,2]);
+        cube([10,29.5,1]);
       }
   }
 }
@@ -94,7 +94,7 @@ module control_pod() {
 module base_layer() {
   difference() {
     control_pod();
-    translate([-25,-25,4]) {
+    translate([-25,-25,3]) {
       cube([50, 50, 20]);
     }
   }
@@ -104,11 +104,11 @@ module second_layer() {
   difference() {
     difference() {
       control_pod();
-      translate([-25,-25,6.5]) {
+      translate([-25,-25,5.5]) {
         cube([50, 50, 20]);
       }
     }
-    translate([-25,-25,-6]) {
+    translate([-25,-25,-7]) {
       cube([50, 50, 10]);
     }
   }
@@ -117,12 +117,12 @@ module second_layer() {
 module top_layer() {
   intersection() {
     control_pod();
-    translate([-25,-25,6.5]) {
+    translate([-25,-25,5.5]) {
       cube([50, 50, 20]);
     }
   }
 }
 
 // base_layer();
-// second_layer();
-top_layer();
+second_layer();
+// top_layer();

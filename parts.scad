@@ -79,11 +79,11 @@ module slim_button() {
 module power_sw() {
   base_width = 12;
   base_length = 5;
-  base_height = 6; // including nubs
+  base_height = 6.5; // including nubs
 
   switch_height = 5;
   switch_width = 7;
-  switch_length = 3;
+  switch_length = 4;
   switch_x_offset = -3.5;
   switch_y_offset = -1.5;
 
