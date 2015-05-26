@@ -1,5 +1,5 @@
 mount_hole_center_offset = 10;
-mount_hole_radius = 1.75;
+mount_hole_radius = 1.6;
 
 module hemisphere() {
   translate([0,0,-6]) {
@@ -62,7 +62,7 @@ module navigation_switch() {
 module button() {
   base_width = 7; // including leads
   base_length = 7;
-  base_height = 4.25; // including nubs, leads folded
+  base_height = 4.5; // including nubs, leads folded
   // button_height = 2;
   button_height = 5; // ensure cleanance
   button_width = 4;
@@ -101,7 +101,7 @@ module power_sw() {
 
   switch_height = 5;
   switch_width = 7;
-  switch_length = 4;
+  switch_length = 3;
   switch_x_offset = -3.5;
   switch_y_offset = -1.5;
 

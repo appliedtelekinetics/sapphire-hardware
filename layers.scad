@@ -16,7 +16,7 @@ include <parts.scad>;
 
 facets = 50;
 
-mount_hole_rotation = 7;
+mount_hole_rotation = 0;
 
 module control_pod() {
   difference() {
@@ -29,16 +29,16 @@ module control_pod() {
                 difference() {
                   difference() {
                     hemisphere();
-                    translate([8.5,-9.5,3.5]) {
-                      rotate([-90,0,-139]) {
+                    translate([-0.0,8.5,9.5]) {
+                      rotate([-90,0,-0]) {
                         color("blue") { power_sw(); }
                       }
                     }
                   }
-                  translate([6,-12,2]) {
-                    rotate([0,0,40]) {
+                  translate([-3.5,5,9]) {
+                    rotate([0,0,0]) {
                       // extra channel for power_sw
-                      color("green") { cube([7,10,1]); }
+                      color("red") { cube([7,4,2.5]); }
                     }
                   }
                 }
@@ -52,7 +52,7 @@ module control_pod() {
                 mount_holes();
               }
             }
-            translate([-6.0,-8.0,4.5]) {
+            translate([-6.0,-8.0,4.0]) {
               rotate([60,0,-35]) {
                 color("orange") { navigation_switch(); }
               }
@@ -68,7 +68,7 @@ module control_pod() {
 
         translate([-5,-4.9,0]) {
           // access
-          cube([10,10,12]);
+          cube([10,10,11.5]);
         }
       }
       translate([-5,-12,2]) {
@@ -109,7 +109,7 @@ module third_layer() {
   difference() {
     difference() {
       control_pod();
-      translate([-25,-25,12.0]) {
+      translate([-25,-25,11.5]) {
         cube([50, 50, 20]);
       }
     }
@@ -122,30 +122,35 @@ module third_layer() {
 module top_layer() {
   intersection() {
     control_pod();
-    translate([-25,-25,12.0]) {
+    translate([-25,-25,11.5]) {
       cube([50, 50, 20]);
     }
   }
 }
 
-explode = false;
-explode = true;
+export = false;
+// export = true;
 
-if (explode) {
-  explosion = 5;
-  base_layer();
-  translate([0,0,explosion]) { second_layer() ; }
-  translate([0,0,explosion*2]) { third_layer() ; }
-  translate([0,0,explosion*3]) { top_layer() ; }
+if (!export) {
+  explode = false;
+  explode = true;
+
+  if (explode) {
+    explosion = 5;
+    base_layer();
+    translate([0,0,explosion]) { second_layer() ; }
+    translate([0,0,explosion*2]) { third_layer() ; }
+    translate([0,0,explosion*3]) { top_layer() ; }
+  } else {
+    base_layer();
+    second_layer();
+    third_layer();
+    top_layer();
+  }
 } else {
-  // base_layer();
-  // second_layer();
-  third_layer();
-  // top_layer();
+  // for single stl export
+  translate([0,35,0]) { base_layer(); }
+  translate([35,0,-3.0]) { second_layer() ; }
+  translate([0,-30,-5.5]) { third_layer() ; }
+  translate([-25,0,-11.5]) { top_layer() ; }
 }
-
-// // for single stl export
-// translate([0,35,0]) { base_layer(); }
-// translate([35,0,-3.0]) { second_layer() ; }
-// translate([0,-30,-5.5]) { third_layer() ; }
-// translate([-25,0,-12.0]) { top_layer() ; }
