@@ -2,11 +2,8 @@
 TODO:
 
 rotate nav switch so that it's even closer to the mount hole?
-lower height of second layer, increase height of top layer.
-lower power_sw so cutout is exposed on bottom.?
 
-add keyboard toggle button.
-add home button.
+space home and kbbd buttons father apart so third layer is more reliable.
 add status led.
 add power connected led?
 */
@@ -149,7 +146,7 @@ export = false;
 
 if (!export) {
   explode = false;
-  explode = true;
+  // explode = true;
 
   if (explode) {
     explosion = 5;
@@ -158,15 +155,18 @@ if (!export) {
     translate([0,0,explosion*2]) { third_layer() ; }
     translate([0,0,explosion*3]) { top_layer() ; }
   } else {
-    base_layer();
+    // base_layer();
     // second_layer();
-    // third_layer();
+    third_layer();
     // top_layer();
   }
 } else {
-  // for single stl export
-  translate([0,35,0]) { base_layer(); }
-  translate([35,0,-3.0]) { second_layer() ; }
-  translate([0,-30,-5.5]) { third_layer() ; }
-  translate([-25,0,-11.5]) { top_layer() ; }
+  //prevent wear on same area of build platform
+  rotate([0,0,10]) {
+    // for single stl export
+    translate([0,35,0]) { base_layer(); }
+    translate([35,0,-3.0]) { second_layer() ; }
+    translate([0,-30,-5.5]) { third_layer() ; }
+    translate([-25,0,-11.5]) { top_layer() ; }
+  }
 }
