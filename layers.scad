@@ -56,22 +56,22 @@ module control_pod() {
                     color("orange") { navigation_switch(); }
                   }
                 }
-                translate([13,0,3]) {
-                  rotate([0,90,0]) {
+                translate([12,4,3]) {
+                  rotate([0,90,17]) {
                     // reset button
                     color("orange") { button(); }
                   }
                 }
               }
-              translate([3,-11,3]) {
-                rotate([65,0,15]) {
+              translate([3,-11,2]) {
+                rotate([40,0,3]) {
                   // home button
                   color("white") { button(); }
                 }
               }
             }
             translate([10,-7,3]) {
-              rotate([65,0,53]) {
+              rotate([90,0,53]) {
                 // keyboard toggle button
                 color("white") { button(); }
               }
@@ -84,9 +84,9 @@ module control_pod() {
           cube([10,10,11.5]);
         }
       }
-      translate([-5,-12,2]) {
+      translate([-4,2,2]) {
         // channel on base layer
-        cube([10,25,1]);
+        color("blue") { cube([8,5,1]); }
       }
     }
     rotate([0,0,mount_hole_rotation]) {
@@ -142,7 +142,7 @@ module top_layer() {
 }
 
 export = false;
-// export = true;
+export = true;
 
 if (!export) {
   explode = false;
@@ -156,13 +156,13 @@ if (!export) {
     translate([0,0,explosion*3]) { top_layer() ; }
   } else {
     // base_layer();
-    // second_layer();
+    second_layer();
     third_layer();
     // top_layer();
   }
 } else {
   //prevent wear on same area of build platform
-  rotate([0,0,10]) {
+  rotate([0,0,20]) {
     // for single stl export
     translate([0,35,0]) { base_layer(); }
     translate([35,0,-3.0]) { second_layer() ; }
