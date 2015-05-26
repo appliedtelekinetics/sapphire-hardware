@@ -1,8 +1,5 @@
 /*
 TODO:
-narrow switch bases.
-lower reset switch.
-nav switch too loose now -- shim or make base a little shorter?
 
 rotate nav switch so that it's even closer to the mount hole?
 lower height of second layer, increase height of top layer.
@@ -32,7 +29,7 @@ module control_pod() {
                 difference() {
                   difference() {
                     hemisphere();
-                    translate([8.5,-9.5,3]) {
+                    translate([8.5,-9.5,3.5]) {
                       rotate([-90,0,-139]) {
                         color("blue") { power_sw(); }
                       }
@@ -60,7 +57,7 @@ module control_pod() {
                 color("orange") { navigation_switch(); }
               }
             }
-            translate([11.5,0,4]) {
+            translate([13,0,3]) {
               rotate([0,90,0]) {
                 // reset button
                 color("orange") { button(); }
@@ -141,9 +138,9 @@ if (explode) {
   translate([0,0,explosion*2]) { third_layer() ; }
   translate([0,0,explosion*3]) { top_layer() ; }
 } else {
-  base_layer();
+  // base_layer();
   // second_layer();
-  // third_layer();
+  third_layer();
   // top_layer();
 }
 

@@ -40,7 +40,7 @@ module navigation_switch() {
   base_width=11.0;
   base_length=11.0;
   // base_height=3.65;
-  base_height=5; // with leads folded under
+  base_height=4.75; // with leads folded under
   // stick_lower_height=3.4; // 4.4 really
   stick_lower_height=6; // stick movement space
   stick_upper_width=3.17;
@@ -60,9 +60,9 @@ module navigation_switch() {
 }
 
 module button() {
-  base_width = 8.0; // including leads
-  base_length = 8;
-  base_height = 4.5; // including nubs, leads folded
+  base_width = 7; // including leads
+  base_length = 7;
+  base_height = 4.25; // including nubs, leads folded
   // button_height = 2;
   button_height = 5; // ensure cleanance
   button_width = 4;
@@ -96,7 +96,7 @@ module slim_button() {
 
 module power_sw() {
   base_width = 12;
-  base_length = 5;
+  base_length = 4;
   base_height = 6.5; // including nubs
 
   switch_height = 5;
