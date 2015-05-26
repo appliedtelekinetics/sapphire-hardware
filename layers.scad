@@ -28,39 +28,55 @@ module control_pod() {
               difference() {
                 difference() {
                   difference() {
-                    hemisphere();
-                    translate([-0.0,8.5,9.5]) {
-                      rotate([-90,0,-0]) {
-                        color("blue") { power_sw(); }
+                    difference() {
+                      difference() {
+                        hemisphere();
+                        translate([-0.0,8.5,9.5]) {
+                          rotate([-90,0,-0]) {
+                            color("blue") { power_sw(); }
+                          }
+                        }
+                      }
+                      translate([-3.5,5,9]) {
+                        rotate([0,0,0]) {
+                          // extra channel for power_sw
+                          color("red") { cube([7,4,2.5]); }
+                        }
+                      }
+                    }
+                    translate([0,12,1]) {
+                      rotate([0,0,0]) {
+                        color("red") { micro_usb_board(); }
                       }
                     }
                   }
-                  translate([-3.5,5,9]) {
-                    rotate([0,0,0]) {
-                      // extra channel for power_sw
-                      color("red") { cube([7,4,2.5]); }
-                    }
+                  rotate([0,0,mount_hole_rotation]) {
+                    mount_holes();
                   }
                 }
-                translate([0,12,1]) {
-                  rotate([0,0,0]) {
-                    color("red") { micro_usb_board(); }
+                translate([-6.0,-8.0,4.0]) {
+                  rotate([60,0,-35]) {
+                    color("orange") { navigation_switch(); }
+                  }
+                }
+                translate([13,0,3]) {
+                  rotate([0,90,0]) {
+                    // reset button
+                    color("orange") { button(); }
                   }
                 }
               }
-              rotate([0,0,mount_hole_rotation]) {
-                mount_holes();
+              translate([3,-11,3]) {
+                rotate([65,0,15]) {
+                  // home button
+                  color("white") { button(); }
+                }
               }
             }
-            translate([-6.0,-8.0,4.0]) {
-              rotate([60,0,-35]) {
-                color("orange") { navigation_switch(); }
-              }
-            }
-            translate([13,0,3]) {
-              rotate([0,90,0]) {
-                // reset button
-                color("orange") { button(); }
+            translate([10,-7,3]) {
+              rotate([65,0,53]) {
+                // keyboard toggle button
+                color("white") { button(); }
               }
             }
           }
@@ -143,9 +159,9 @@ if (!export) {
     translate([0,0,explosion*3]) { top_layer() ; }
   } else {
     base_layer();
-    second_layer();
-    third_layer();
-    top_layer();
+    // second_layer();
+    // third_layer();
+    // top_layer();
   }
 } else {
   // for single stl export
