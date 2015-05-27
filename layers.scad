@@ -1,6 +1,6 @@
 /*
 TODO:
-
+enlarge led.
 rotate nav switch so that it's even closer to the mount hole?
 
 space home and kbbd buttons father apart so third layer is more reliable.
@@ -27,58 +27,120 @@ module control_pod() {
                   difference() {
                     difference() {
                       difference() {
-                        hemisphere();
-                        translate([-0.0,8.5,9.5]) {
-                          rotate([-90,0,-0]) {
-                            color("blue") { power_sw(); }
+                        difference() {
+                          hemisphere();
+                          translate([-0.0,8.5,9.5]) {
+                            rotate([-90,0,-0]) {
+                              color("blue") { power_sw(); }
+                            }
+                          }
+                        }
+                        translate([-3.5,5,9]) {
+                          rotate([0,0,0]) {
+                            // extra channel for power_sw
+                            color("red") { cube([7,4,2.5]); }
                           }
                         }
                       }
-                      translate([-3.5,5,9]) {
+                      translate([0,12,1]) {
                         rotate([0,0,0]) {
-                          // extra channel for power_sw
-                          color("red") { cube([7,4,2.5]); }
+                          color("red") { micro_usb_board(); }
                         }
                       }
                     }
-                    translate([0,12,1]) {
-                      rotate([0,0,0]) {
-                        color("red") { micro_usb_board(); }
+                    rotate([0,0,mount_hole_rotation]) {
+                      mount_holes();
+                    }
+                  }
+                  union() {
+                    translate([-6.0,-8.0,4.0]) {
+                      rotate([60,0,-35]) {
+                        color("orange") { navigation_switch(); }
+                      }
+                    }
+                    // access for led
+                    color("red") {
+                      translate([-5,-8,5.5]) {
+                        rotate([0,90,55]) {
+                          cylinder(d=3, h=5, $fn=facets);
+                          // cube([12,2,2]);
+                        }
                       }
                     }
                   }
-                  rotate([0,0,mount_hole_rotation]) {
-                    mount_holes();
+                  union() {
+                    translate([12,4,3]) {
+                      rotate([0,90,17]) {
+                        // reset button
+                        color("orange") { button(); }
+                      }
+                    }
+                    // access for reset button
+                    color("red") {
+                      translate([13,5,3]) {
+                        rotate([0,90,-165]) {
+                          cylinder(d=2, h=9, $fn=facets);
+                          // cube([12,2,2]);
+                        }
+                      }
+                    }
                   }
                 }
-                translate([-6.0,-8.0,4.0]) {
-                  rotate([60,0,-35]) {
-                    color("orange") { navigation_switch(); }
+                union() {
+                  translate([3.5,-10,5]) {
+                    rotate([80,0,-4]) {
+                      // home button
+                      color("white") { button(); }
+                    }
                   }
-                }
-                translate([12,4,3]) {
-                  rotate([0,90,17]) {
-                    // reset button
-                    color("orange") { button(); }
+                  // access for home button
+                  color("red") {
+                    translate([4,-4,3]) {
+                      rotate([0,90,-95]) {
+                        cylinder(d=2, h=7, $fn=facets);
+                        // cube([12,2,2]);
+                      }
+                    }
                   }
                 }
               }
-              translate([3,-11,2]) {
-                rotate([40,0,3]) {
-                  // home button
-                  color("white") { button(); }
+              union() {
+                translate([10,-7,3]) {
+                  rotate([90,0,53]) {
+                    // keyboard toggle button
+                    color("white") { button(); }
+                  }
+                }
+                // access for keyboard toggle button
+                color("red") {
+                  translate([3,-2,3]) {
+                    rotate([0,90,-35]) {
+                      cylinder(d=2, h=12, $fn=facets);
+                      // cube([12,2,2]);
+                    }
+                  }
                 }
               }
             }
-            translate([10,-7,3]) {
-              rotate([90,0,53]) {
-                // keyboard toggle button
-                color("white") { button(); }
+          }
+          union() {
+            translate([-16,-5,3]) {
+              rotate([90,0,287]) {
+                // status led
+                micro_led();
+              }
+            }
+            // access for led
+            color("red") {
+              translate([-16,-5,3]) {
+                rotate([0,90,15]) {
+                  cylinder(d=3, h=12, $fn=facets);
+                  // cube([12,2,2]);
+                }
               }
             }
           }
         }
-
         translate([-5,-4.9,0]) {
           // access
           cube([10,10,11.5]);
@@ -142,7 +204,7 @@ module top_layer() {
 }
 
 export = false;
-export = true;
+// export = true;
 
 if (!export) {
   explode = false;
@@ -157,12 +219,12 @@ if (!export) {
   } else {
     // base_layer();
     second_layer();
-    third_layer();
+    // third_layer();
     // top_layer();
   }
 } else {
   //prevent wear on same area of build platform
-  rotate([0,0,20]) {
+  rotate([0,0,30]) {
     // for single stl export
     translate([0,35,0]) { base_layer(); }
     translate([35,0,-3.0]) { second_layer() ; }
