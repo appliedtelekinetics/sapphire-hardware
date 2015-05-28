@@ -142,10 +142,10 @@ module micro_usb_board() {
 }
 
 module micro_led() {
-  body_diameter = 3.25;
+  body_diameter = 3.5;
   body_height = 3;
   base_diameter = 4.75;
-  base_height = 1.5;
+  base_height = 2;
   cone_height = 1;
 
   color("magenta") {

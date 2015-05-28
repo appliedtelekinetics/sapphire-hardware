@@ -67,7 +67,7 @@ module control_pod() {
                     }
                   }
                   union() {
-                    translate([12,4,2.5]) {
+                    translate([12,4,3]) {
                       rotate([0,90,17]) {
                         // reset button
                         color("orange") { button(); }
