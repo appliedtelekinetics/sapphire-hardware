@@ -40,7 +40,7 @@ module control_pod() {
                           }
                         }
                       }
-                      translate([0,12,1]) {
+                      translate([0,12,1.5]) {
                         rotate([0,0,0]) {
                           color("red") { micro_usb_board(); }
                         }
@@ -58,7 +58,7 @@ module control_pod() {
                     }
                     // access for nav switch
                     color("red") {
-                      translate([-6.5,-8.5,5.5]) {
+                      translate([-6.5,-8.5,6.5]) {
                         rotate([0,90,55]) {
                           cylinder(d=4, h=6, $fn=facets);
                           // cube([12,2,2]);
@@ -144,7 +144,7 @@ module control_pod() {
           cube([10,10,11.5]);
         }
       }
-      translate([-4,2,2]) {
+      translate([-4,2,2.5]) {
         // channel on base layer
         color("blue") { cube([8,5,1]); }
       }
@@ -158,7 +158,7 @@ module control_pod() {
 module base_layer() {
   difference() {
     control_pod();
-    translate([-25,-25,3]) {
+    translate([-25,-25,3.5]) {
       cube([50, 50, 20]);
     }
   }
@@ -168,11 +168,11 @@ module second_layer() {
   difference() {
     difference() {
       control_pod();
-      translate([-25,-25,5.5]) {
+      translate([-25,-25,6.0]) {
         cube([50, 50, 20]);
       }
     }
-    translate([-25,-25,-7]) {
+    translate([-25,-25,-6.5]) {
       cube([50, 50, 10]);
     }
   }
@@ -186,7 +186,7 @@ module third_layer() {
         cube([50, 50, 20]);
       }
     }
-    translate([-25,-25,-4.5]) {
+    translate([-25,-25,-4.0]) {
       cube([50, 50, 10]);
     }
   }
@@ -206,7 +206,7 @@ export = false;
 
 if (!export) {
   explode = false;
-  explode = true;
+  // explode = true;
 
   if (explode) {
     explosion = 5;
@@ -216,9 +216,9 @@ if (!export) {
     translate([0,0,explosion*3]) { top_layer() ; }
   } else {
     // base_layer();
-    second_layer();
+    // second_layer();
     // third_layer();
-    // top_layer();
+    top_layer();
   }
 } else {
   //prevent wear on same area of build platform
