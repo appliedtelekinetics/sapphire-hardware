@@ -1,5 +1,5 @@
-mount_hole_center_offset = 10;
-mount_hole_radius = 1.7;
+mount_hole_center_offset = 9.6;
+mount_hole_radius = 1.85;
 
 module hemisphere() {
   translate([0,0,-6]) {
@@ -142,16 +142,16 @@ module micro_usb_board() {
 }
 
 module micro_led() {
-  body_diameter = 3;
+  body_diameter = 3.25;
   body_height = 3;
-  base_diameter = 4.15;
-  base_height = 1;
+  base_diameter = 4.75;
+  base_height = 1.5;
   cone_height = 1;
 
   color("magenta") {
     union() {
       translate([0,0,base_height]) {
-        cylinder(h=3, d=3, center=false, $fn=facets);
+        cylinder(h=body_height, d=body_diameter, center=false, $fn=facets);
         translate([0,0,body_height]) {
           sphere(d=body_diameter, center=false, $fn=facets);
         }

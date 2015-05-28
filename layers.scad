@@ -1,10 +1,8 @@
 /*
 TODO:
-enlarge led.
 rotate nav switch so that it's even closer to the mount hole?
 
 space home and kbbd buttons father apart so third layer is more reliable.
-add status led.
 add power connected led?
 */
 
@@ -58,18 +56,18 @@ module control_pod() {
                         color("orange") { navigation_switch(); }
                       }
                     }
-                    // access for led
+                    // access for nav switch
                     color("red") {
-                      translate([-5,-8,5.5]) {
+                      translate([-6.5,-8.5,5.5]) {
                         rotate([0,90,55]) {
-                          cylinder(d=3, h=5, $fn=facets);
+                          cylinder(d=4, h=6, $fn=facets);
                           // cube([12,2,2]);
                         }
                       }
                     }
                   }
                   union() {
-                    translate([12,4,3]) {
+                    translate([12,4,2.5]) {
                       rotate([0,90,17]) {
                         // reset button
                         color("orange") { button(); }
@@ -79,7 +77,7 @@ module control_pod() {
                     color("red") {
                       translate([13,5,3]) {
                         rotate([0,90,-165]) {
-                          cylinder(d=2, h=9, $fn=facets);
+                          cylinder(d=3, h=9, $fn=facets);
                           // cube([12,2,2]);
                         }
                       }
@@ -87,7 +85,7 @@ module control_pod() {
                   }
                 }
                 union() {
-                  translate([3.5,-10,5]) {
+                  translate([4.0,-10,5]) {
                     rotate([80,0,-4]) {
                       // home button
                       color("white") { button(); }
@@ -95,9 +93,9 @@ module control_pod() {
                   }
                   // access for home button
                   color("red") {
-                    translate([4,-4,3]) {
-                      rotate([0,90,-95]) {
-                        cylinder(d=2, h=7, $fn=facets);
+                    translate([2,-4,3]) {
+                      rotate([0,90,-80]) {
+                        cylinder(d=3, h=7, $fn=facets);
                         // cube([12,2,2]);
                       }
                     }
@@ -105,7 +103,7 @@ module control_pod() {
                 }
               }
               union() {
-                translate([10,-7,3]) {
+                translate([11,-6,3]) {
                   rotate([90,0,53]) {
                     // keyboard toggle button
                     color("white") { button(); }
@@ -113,9 +111,9 @@ module control_pod() {
                 }
                 // access for keyboard toggle button
                 color("red") {
-                  translate([3,-2,3]) {
-                    rotate([0,90,-35]) {
-                      cylinder(d=2, h=12, $fn=facets);
+                  translate([4,-1,3]) {
+                    rotate([0,90,-37]) {
+                      cylinder(d=3, h=12, $fn=facets);
                       // cube([12,2,2]);
                     }
                   }
@@ -132,9 +130,9 @@ module control_pod() {
             }
             // access for led
             color("red") {
-              translate([-16,-5,3]) {
+              translate([-16.1,-5.1,3]) {
                 rotate([0,90,15]) {
-                  cylinder(d=3, h=12, $fn=facets);
+                  cylinder(d1=3.75, d2=2, h=12, $fn=facets);
                   // cube([12,2,2]);
                 }
               }
@@ -208,7 +206,7 @@ export = false;
 
 if (!export) {
   explode = false;
-  // explode = true;
+  explode = true;
 
   if (explode) {
     explosion = 5;
