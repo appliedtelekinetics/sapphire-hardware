@@ -44,7 +44,7 @@ module upper_cylinder() {
         // the z of the transform needs to put the flange piece very slightly
         // lower than the top of the enclosing cylinder or else the printer
         // won't properly print both the cylinder and the flanges.
-        translate([0.5, -1.1, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
+        translate([1.0, -1.1, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
           rotate([0,0,45]) {
             flange();
           }
@@ -53,7 +53,7 @@ module upper_cylinder() {
         // the z of the transform needs to put the flange piece very slightly
         // lower than the top of the enclosing cylinder or else the printer
         // won't properly print both the cylinder and the flanges.
-        translate([0.5, 1.1, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
+        translate([1.0, 1.1, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
           rotate([0,0,225]) {
             flange();
           }
@@ -95,8 +95,10 @@ module flange() {
         rotate_extrude($fn=facets) {
           square([flange_outer_radius,flange_cylinder_height]);
         }
-        
-        cube([flange_outer_radius*1.5,flange_outer_radius*1.5,flange_cylinder_height]);
+        // controls the rotational length of the flange
+        translate([-3,-3,0]) {
+          cube([flange_outer_radius*2.5,flange_outer_radius*2.5,flange_cylinder_height]);
+        }
       }
     
 
@@ -104,9 +106,10 @@ module flange() {
         rotate_extrude($fn=facets) {
           square([flange_inner_radius,flange_cylinder_height]);
         }
-        
-        cube([flange_outer_radius*1.5,flange_outer_radius*1.5,flange_cylinder_height]);
-
+        // controls the rotational length of the flange
+        translate([-3,-3,0]) {
+          cube([flange_outer_radius*2.5,flange_outer_radius*2.5,flange_cylinder_height]);
+        }
       }
     }
 
@@ -116,9 +119,9 @@ module flange() {
         rotate_extrude($fn=facets) {
           square([flange_outer_radius-flange_wall_width,flange_cylinder_height]);
         }
-        
-        translate([flange_width/flange_channel_width, flange_width/flange_channel_width, 0]) {
-          cube([flange_outer_radius*1.5,flange_outer_radius*1.5,flange_cylinder_height]);
+        // the -3 corresponds withthe -3 in the flange segment above
+        translate([(flange_width/flange_channel_width)-3, (flange_width/flange_channel_width)-3, 0]) {
+          cube([flange_outer_radius*2.5,flange_outer_radius*2.5,flange_cylinder_height]);
         }
       }
     
@@ -127,9 +130,10 @@ module flange() {
         rotate_extrude($fn=facets) {
           square([flange_inner_radius+flange_wall_width,flange_cylinder_height]);
         }
-        
-        cube([flange_outer_radius*1.5,flange_outer_radius*1.5,flange_cylinder_height]);
-
+        // the -3 corresponds withthe -3 in the flange segment above
+        translate([(flange_width/flange_channel_width)-3, (flange_width/flange_channel_width)-3, 0]) {
+          cube([flange_outer_radius*2.5,flange_outer_radius*2.5,flange_cylinder_height]);
+        }
       }
     }
   }
