@@ -67,7 +67,7 @@ module control_pod() {
                     }
                   }
                   union() {
-                    translate([12,4,3]) {
+                    translate([11,3,3]) {
                       rotate([0,90,17]) {
                         // reset button
                         color("orange") { button(); }
@@ -103,7 +103,7 @@ module control_pod() {
                 }
               }
               union() {
-                translate([11,-6,3]) {
+                translate([10,-5,3]) {
                   rotate([90,0,53]) {
                     // keyboard toggle button
                     color("white") { button(); }
@@ -202,11 +202,11 @@ module top_layer() {
 }
 
 export = false;
-// export = true;
+export = true;
 
 if (!export) {
   explode = false;
-  // explode = true;
+  explode = true;
 
   if (explode) {
     explosion = 5;
@@ -222,11 +222,11 @@ if (!export) {
   }
 } else {
   //prevent wear on same area of build platform
-  rotate([0,0,30]) {
+  rotate([0,0,40]) {
     // for single stl export
     translate([0,35,0]) { base_layer(); }
-    translate([35,0,-3.0]) { second_layer() ; }
-    translate([0,-30,-5.5]) { third_layer() ; }
+    translate([35,0,-3.5]) { second_layer() ; }
+    translate([0,-30,-6]) { third_layer() ; }
     translate([-25,0,-11.5]) { top_layer() ; }
   }
 }
