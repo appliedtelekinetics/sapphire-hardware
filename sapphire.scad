@@ -43,8 +43,8 @@ module upper_cylinder() {
       // the z of the transform needs to put the flange piece very slightly
       // lower than the top of the enclosing cylinder or else the printer
       // won't properly print both the cylinder and the flanges.
-      translate([0.5, 0.0, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
-        rotate([0, -6.7, 0]) {
+      translate([0.5, 0.0, (upper_cylinder_height-flange_cylinder_height)*0.66]) {
+        rotate([3.5, -5.5, -30]) {
         
           rotate([0,0,45]) {
             flange();
@@ -114,7 +114,7 @@ module flange() {
       difference() {
         intersection() {
           rotate_extrude($fn=facets) {
-            flange_outer_wall_modifier = -0.5;
+            flange_outer_wall_modifier = -0.0;
             square([flange_outer_radius-flange_wall_width+flange_outer_wall_modifier,flange_cylinder_height]);
           }
           // the -3 corresponds withthe -3 in the flange segment above
