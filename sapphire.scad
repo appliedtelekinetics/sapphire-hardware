@@ -1,7 +1,7 @@
 facets = 100;
 
 upper_cylinder_radius = 15.4;
-upper_cylinder_height = 10;
+upper_cylinder_height = 9;
 upper_cylinder_wall_thickness = 1;
 
 lower_cylinder_radius = 13.7;
@@ -10,8 +10,8 @@ lower_cylinder_wall_thickness = 0.5;
 
 flange_cylinder_height = 3;
 flange_outer_radius = upper_cylinder_radius - upper_cylinder_wall_thickness;
-flange_width = 5;
-flange_inner_radius = (flange_outer_radius - flange_width)-2;
+flange_width = 6;
+flange_inner_radius = (flange_outer_radius - flange_width)-3;
 flange_channel_width = 3;
 flange_wall_width = flange_width - flange_channel_width;
 
@@ -40,20 +40,16 @@ module upper_cylinder() {
       }
 
       // draw flanges
-      rotate([0, -6.7, 0]) {
-        // the z of the transform needs to put the flange piece very slightly
-        // lower than the top of the enclosing cylinder or else the printer
-        // won't properly print both the cylinder and the flanges.
-        translate([0.8, -1.1, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
+      // the z of the transform needs to put the flange piece very slightly
+      // lower than the top of the enclosing cylinder or else the printer
+      // won't properly print both the cylinder and the flanges.
+      translate([0.5, 0.0, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
+        rotate([0, -6.7, 0]) {
+        
           rotate([0,0,45]) {
             flange();
           }
-        }
-          
-        // the z of the transform needs to put the flange piece very slightly
-        // lower than the top of the enclosing cylinder or else the printer
-        // won't properly print both the cylinder and the flanges.
-        translate([0.8, 1.1, (upper_cylinder_height-flange_cylinder_height)*0.64]) {
+      
           rotate([0,0,225]) {
             flange();
           }
@@ -63,7 +59,7 @@ module upper_cylinder() {
 
     // angle the top
     rotate([0, -6.7, 0]) {
-      translate([-upper_cylinder_radius,-upper_cylinder_radius,+7.5]) {
+      translate([-upper_cylinder_radius,-upper_cylinder_radius,+6.9]) {
         cube([upper_cylinder_radius*2.2,upper_cylinder_radius*2, 5]); 
       }
     }
@@ -118,7 +114,8 @@ module flange() {
       difference() {
         intersection() {
           rotate_extrude($fn=facets) {
-            square([flange_outer_radius-flange_wall_width,flange_cylinder_height]);
+            flange_outer_wall_modifier = -0.5;
+            square([flange_outer_radius-flange_wall_width+flange_outer_wall_modifier,flange_cylinder_height]);
           }
           // the -3 corresponds withthe -3 in the flange segment above
           translate([(flange_width/flange_channel_width)-3, (flange_width/flange_channel_width)-3, 0]) {
@@ -129,7 +126,8 @@ module flange() {
 
         intersection(){
           rotate_extrude($fn=facets) {
-            square([flange_inner_radius+flange_wall_width,flange_cylinder_height]);
+            flange_inner_wall_modifier = -0.5;
+            square([flange_inner_radius+flange_wall_width+flange_inner_wall_modifier,flange_cylinder_height]);
           }
           // the -3 corresponds withthe -3 in the flange segment above
           translate([(flange_width/flange_channel_width)-3, (flange_width/flange_channel_width)-3, 0]) {
@@ -141,12 +139,12 @@ module flange() {
     // clip the flange corners
     union() {
       rotate([0,0,40]) {
-        translate([2.5,-9,0]) {
+        translate([1.0,-8,0]) {
           cube([3,5,flange_cylinder_height]);
         }
       }
       rotate([0,0,40]) {
-        translate([1.0,5,0]) {
+        translate([0.0,4,0]) {
           cube([3,5,flange_cylinder_height]);
         }
       }
