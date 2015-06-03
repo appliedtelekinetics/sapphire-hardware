@@ -161,6 +161,47 @@ module full_insert() {
 
 }
 
-full_insert();
+// full_insert();
 // flange();
+blank_insert();
 
+module blank_insert() {
+  difference() {
+    translate([0, 0, lower_cylinder_height]) {
+      difference() {
+        union() {
+          difference() {
+            cylinder(h=upper_cylinder_height, r=upper_cylinder_radius, $fn=facets);
+          
+            // cylinder(h=upper_cylinder_height, r=lower_cylinder_radius-lower_cylinder_wall_thickness, $fn=facets);
+          }
+        }
+
+        // angle the top
+        rotate([0, -7.0, 0]) {
+          translate([-upper_cylinder_radius,-upper_cylinder_radius,+6.5]) {
+            cube([upper_cylinder_radius*2.2,upper_cylinder_radius*2, 5]); 
+          }
+        }
+      }
+    }
+    rotate([0, -7.0, 0]) {
+      translate([2.73,0,20.4]) {
+        difference() {
+          cylinder(r=upper_cylinder_radius-3, h=1);
+          scale(0.6) {
+            rotate([0,0,60]) {
+              translate([-1,2.5,-2.7]) {
+                import("cat-insert_v4.stl");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  lower_cylinder();
+
+}
