@@ -58,8 +58,8 @@ module upper_cylinder() {
     }
 
     // angle the top
-    rotate([0, -6.7, 0]) {
-      translate([-upper_cylinder_radius,-upper_cylinder_radius,+6.9]) {
+    rotate([0, -7.0, 0]) {
+      translate([-upper_cylinder_radius,-upper_cylinder_radius,+6.5]) {
         cube([upper_cylinder_radius*2.2,upper_cylinder_radius*2, 5]); 
       }
     }
